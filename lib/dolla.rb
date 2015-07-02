@@ -1,6 +1,7 @@
 require "json_api_client"
 require "dolla/version"
 require "dolla/user"
+require "dolla/report"
 require "dolla/errors/base_error"
 require "dolla/errors/authentication_error"
 require "dolla/json_api_client/middleware/authentication"

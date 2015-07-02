@@ -44,10 +44,24 @@ describe Dolla do
             }
           }]
         }.to_json)
+
+      stub_request(:get, "https://api.dollapayments.com/reports/dashboard")
+        .to_return(headers: {content_type: "application/vnd.api+json", authorization: "Bearer #{jwt_token}"}, body: {
+          data: [{
+            type: "reports",
+            id: "dashboard",
+            attributes: {
+              num_customers: 123,
+              num_transactions: 1234,
+              revenue_cents: 1111111
+            }
+          }]
+        }.to_json)
     end
 
     it 'sends an API call with the API key in the Authorization header' do
       Dolla.api_key = '12345'
+      Dolla.jwt = nil
 
       user = Dolla::User.find(1).first
       
@@ -55,6 +69,7 @@ describe Dolla do
     end
 
     it 'sends an API call with the JSON Web Token in the Authorization header' do
+      Dolla.api_key = nil
       Dolla.jwt = '12345.12345.12345'
 
       user = Dolla::User.find(1).first
