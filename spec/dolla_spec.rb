@@ -8,6 +8,8 @@ describe Dolla do
 
   describe "sending API calls" do
     before do
+      Dolla::Base.site = "http://api.lvh.me:5000/"
+      
       basic_auth_credentials = "12345:"
       jwt_token = '12345.12345.12345'
 

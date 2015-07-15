@@ -1,11 +1,10 @@
 require "json_api_client"
 require "dolla/version"
 require "dolla/user"
+require "dolla/customer"
 require "dolla/report"
 require "dolla/errors/base_error"
 require "dolla/errors/authentication_error"
-require "dolla/json_api_client/middleware/authentication"
-require "dolla/json_api_client/middleware/dolla_environment"
 
 module Dolla
   class << self
@@ -26,10 +25,5 @@ module Dolla
     end
 
     credentials
-  end
-
-  Base.connection do |connection|
-    connection.use JsonApiClient::Middleware::Authentication
-    connection.use JsonApiClient::Middleware::DollaEnvironment
   end
 end
