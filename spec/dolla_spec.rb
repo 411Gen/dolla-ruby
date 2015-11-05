@@ -10,10 +10,11 @@ describe Dolla do
     before do
       Dolla::Base.site = "http://api.lvh.me:5000/"
       
-      basic_auth_credentials = "12345:"
+      api_credentials = "12345:"
+      email_password_credentials = "test@example.com:12345678"
       jwt_token = '12345.12345.12345'
 
-      stub_request(:get, "https://#{basic_auth_credentials}@api.dollapayments.com/users/1")
+      stub_request(:get, "https://#{api_credentials}@api.dollapayments.com/users/1")
         .to_return(headers: {content_type: "application/vnd.api+json"}, body: {
           data: [{
             type: "users",
@@ -59,6 +60,17 @@ describe Dolla do
             }
           }]
         }.to_json)
+
+      stub_request(:get, "https://#{email_password_credentials}@api.dollapayments.com/user/jwt_token")
+        .to_return(headers: {content_type: "application/vnd.api+json"}, body: {
+          data: [{
+            type: "jwt_tokens",
+            id: "1",
+            attributes: {
+              jwt_token: "my.jwt.token"
+            }
+          }]
+        }.to_json)
     end
 
     it 'sends an API call with the API key in the Authorization header' do
@@ -85,6 +97,18 @@ describe Dolla do
 
       expect{Dolla::User.find(1)}.to raise_error(Dolla::AuthenticationError)
     end
+
+    it 'sends an API call with the email and password in the Authorization header' do
+      Dolla.email = 'test@example.com'
+      Dolla.password = '12345678'
+      Dolla.jwt = nil
+      Dolla.api_key = nil
+
+      jwt = Dolla::Jwt.retrieve.first
+      
+      expect(jwt.jwt_token).to eq 'my.jwt.token'
+    end
+
 
     it "does not require authentication for user creation" do
       Dolla.api_key = nil
