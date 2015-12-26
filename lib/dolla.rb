@@ -24,7 +24,7 @@ module Dolla
       basic_auth_credentials = "#{self.api_key}:"
 
       credentials = "Basic #{Base64.encode64(basic_auth_credentials)}"
-    elsif self.email.present? and self.password.present?
+    elsif !self.email.nil? and !self.password.nil?
       basic_auth_credentials = "#{self.email}:#{self.password}"
 
       credentials = "Basic #{Base64.encode64(basic_auth_credentials)}"
