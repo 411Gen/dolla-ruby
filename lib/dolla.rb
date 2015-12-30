@@ -4,6 +4,7 @@ require "dolla/user"
 require "dolla/jwt"
 require "dolla/customer"
 require "dolla/report"
+require "dolla/card"
 require "dolla/errors/base_error"
 require "dolla/errors/authentication_error"
 
