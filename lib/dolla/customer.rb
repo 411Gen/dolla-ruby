@@ -7,5 +7,9 @@ module Dolla
       belongs_to :customer
     end
 
+    class Transaction < Dolla::Base
+      belongs_to :customer
+    end
+
   end
 end

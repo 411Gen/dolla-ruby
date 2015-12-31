@@ -117,6 +117,17 @@ describe Dolla do
       expect{Dolla::User.create(email: 'test123@example.com', password: 'test1234', password_confirmation: 'test1234')}.not_to raise_error
     end
 
+    # it 'sends an API call with the API key in the Authorization header' do
+    #   Dolla.api_key = '12345'
+    #   Dolla.jwt = nil
+
+    #   transaction = Dolla::Transaction.new(card: 'card_12345', amount_cents: '999', amount_currency: 12)
+    #   transaction.relationships.merchant = Dolla::Merchant.new(id: 'merch_12345')
+    #   transaction.save
+
+    #   expect(transaction.gross_amount_cents).to eq '999'
+    # end
+
     it "does not require authentication to access the forgot password endpoint"
   end
 end
