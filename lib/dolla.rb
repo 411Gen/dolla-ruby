@@ -6,6 +6,7 @@ require "dolla/customer"
 require "dolla/report"
 require "dolla/card"
 require "dolla/transaction"
+require "dolla/invoice"
 require "dolla/merchant"
 require "dolla/errors/base_error"
 require "dolla/errors/authentication_error"
@@ -13,6 +14,14 @@ require "dolla/errors/authentication_error"
 module Dolla
   class << self
     attr_accessor :api_key, :jwt, :environment, :email, :password
+  end
+
+  def self.credentials_exist?
+    if !self.api_key.nil? or !self.jwt.nil?
+      return true
+    end
+
+    !self.email.nil? and !self.password.nil?
   end
 
   def self.authorization_credentials

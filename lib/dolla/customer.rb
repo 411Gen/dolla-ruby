@@ -11,5 +11,11 @@ module Dolla
       belongs_to :customer
     end
 
+    class Invoice < Dolla::Base
+      belongs_to :customer
+    end
+
+
+
   end
 end
