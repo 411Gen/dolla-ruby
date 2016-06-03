@@ -8,7 +8,7 @@ describe Dolla do
 
   describe "sending API calls" do
     before do
-      Dolla::Base.site = "http://api.lvh.me:5000/"
+      Dolla::Base.site = "https://api.dollapayments.com/"
       
       api_credentials = "12345:"
       email_password_credentials = "test@example.com:12345678"
@@ -25,8 +25,8 @@ describe Dolla do
           }]
         }.to_json)
 
-      stub_request(:get, "https://api.dollapayments.com/users/1")
-        .to_return(headers: {content_type: "application/vnd.api+json", authorization: "Bearer #{jwt_token}"}, body: {
+      stub_request(:get, "https://api.dollapayments.com/users/1").with(headers: { authorization: "Bearer #{jwt_token}" })
+        .to_return(headers: {content_type: "application/vnd.api+json"}, body: {
           data: [{
             type: "users",
             id: "1",
@@ -48,8 +48,8 @@ describe Dolla do
           }]
         }.to_json)
 
-      stub_request(:get, "https://api.dollapayments.com/reports/dashboard")
-        .to_return(headers: {content_type: "application/vnd.api+json", authorization: "Bearer #{jwt_token}"}, body: {
+      stub_request(:get, "https://api.dollapayments.com/reports/dashboard").with(headers: { authorization: "Bearer #{jwt_token}" })
+        .to_return(headers: {content_type: "application/vnd.api+json"}, body: {
           data: [{
             type: "reports",
             id: "dashboard",
@@ -113,8 +113,26 @@ describe Dolla do
     it "does not require authentication for user creation" do
       Dolla.api_key = nil
       Dolla.jwt = nil
+      Dolla.email = nil
+      Dolla.password = nil
 
       expect{Dolla::User.create(email: 'test123@example.com', password: 'test1234', password_confirmation: 'test1234')}.not_to raise_error
+    end
+
+    context "per request params" do
+
+      it 'sends an API call with the per request API key in the Authorization header' do
+        Dolla.api_key = '54321'
+        Dolla.jwt = nil
+
+        user = nil
+
+        Dolla::User.with_config(api_key: '12345') do
+          user = Dolla::User.find(1).first  
+        end
+        
+        expect(user.email).to eq 'test@example.com'
+      end
     end
 
     # it 'sends an API call with the API key in the Authorization header' do
