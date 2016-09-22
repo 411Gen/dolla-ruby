@@ -23,7 +23,11 @@ Gem::Specification.new do |spec|
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
   end
 
-  spec.add_dependency('json_api_client', '1.0.2')
+  # for some reason, json_api_client's lax dependency requirements make it try to install activesupport 5 when running
+  # bundle install when trying to test the library itself
+  spec.add_dependency("activesupport", "~> 4.2.0")
+  
+  spec.add_dependency('json_api_client', '1.2.0')
 
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"

@@ -8,7 +8,7 @@ describe Dolla do
 
   describe "sending API calls" do
     before do
-      Dolla::Base.site = "https://api.dollapayments.com/"
+      Dolla.site = "https://api.dollapayments.com/"
       
       api_credentials = "12345:"
       email_password_credentials = "test@example.com:12345678"

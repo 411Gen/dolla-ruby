@@ -4,23 +4,22 @@ require "dolla/json_api_client/middleware/dolla_merchant_id"
 
 module Dolla
   class Base < ::JsonApiClient::Resource
-    #self.site = "https://api.dollapayments.com/"
-    self.site = "http://api.dolla.dev:5000/"
+    #self.site = "http://api.dolla.dev:5000/"
+    self.site = "https://api.dollapayments.com/"
 
-    # def self.build_connection
-    #   super.tap do |connection|
-    #     abort self.inspect
-    #     connection.use JsonApiClient::Middleware::Authentication, self
-    #     connection.use JsonApiClient::Middleware::DollaEnvironment, self
-    #     connection.use JsonApiClient::Middleware::DollaMerchantId, self
-    #   end
-    # end
-
-    self.connection do |connection|
-      connection.use JsonApiClient::Middleware::Authentication, self
-      connection.use JsonApiClient::Middleware::DollaEnvironment, self
-      connection.use JsonApiClient::Middleware::DollaMerchantId, self
+    def self._build_connection(rebuild = false)
+      super.tap do |connection|
+        connection.use JsonApiClient::Middleware::Authentication, self
+        connection.use JsonApiClient::Middleware::DollaEnvironment, self
+        connection.use JsonApiClient::Middleware::DollaMerchantId, self
+      end
     end
+
+    # self.connection do |connection|
+    #   connection.use JsonApiClient::Middleware::Authentication, self
+    #   connection.use JsonApiClient::Middleware::DollaEnvironment, self
+    #   connection.use JsonApiClient::Middleware::DollaMerchantId, self
+    # end
 
     def self.with_config(options = {})
       self.custom_config = options
