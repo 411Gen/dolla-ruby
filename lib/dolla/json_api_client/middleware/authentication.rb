@@ -75,6 +75,7 @@ module Dolla
             {method: :get, path: '/invoices/:id'},
             {method: :post, path: '/transactions'},
             {method: :get, path: '/transactions/:id'},
+            {method: :get, path: '/merchants'},
           ]
         end
       end

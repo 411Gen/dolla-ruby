@@ -1,9 +1,12 @@
 require "dolla/json_api_client/middleware/authentication"
 require "dolla/json_api_client/middleware/dolla_environment"
 require "dolla/json_api_client/middleware/dolla_merchant_id"
+require "dolla/json_api_client/parsers/custom_parser"
 
 module Dolla
   class Base < ::JsonApiClient::Resource
+    self.parser = JsonApiClient::Parsers::CustomParser
+
     #self.site = "http://api.dolla.dev:5000/"
     self.site = "https://api.dollapayments.com/"
 
@@ -37,6 +40,9 @@ module Dolla
       Thread.current[key] = options
     end
 
+    def self.load_from_hash(data)
+      parser.parse_hash(self, data)
+    end
   end
 end
 
