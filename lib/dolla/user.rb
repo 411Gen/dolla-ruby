@@ -12,9 +12,5 @@ module Dolla
     custom_endpoint :unlock, on: :member, request_method: :put
 
     # has_many :cards
-
-    class Transaction < Dolla::Base
-      belongs_to :user
-    end
   end
 end
