@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   # for some reason, json_api_client's lax dependency requirements make it try to install activesupport 5 when running
   # bundle install when trying to test the library itself
-  spec.add_dependency("activesupport", "~> 4.3")
+  spec.add_dependency("activesupport", ">= 4.2.0")
   
   spec.add_dependency('json_api_client', '1.5.1')
 
