@@ -18,6 +18,7 @@ require "dolla/permissions"
 require "dolla/bank_account"
 require "dolla/mobile_money_merchant_account"
 require "dolla/mobile_money_operator"
+require "dolla/facebook_bot"
 require "dolla/errors/base_error"
 require "dolla/errors/authentication_error"
 
