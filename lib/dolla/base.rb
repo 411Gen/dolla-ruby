@@ -8,7 +8,7 @@ module Dolla
     self.parser = JsonApiClient::Parsers::CustomParser
 
     #self.site = "http://api.dolla.dev:5000/"
-    self.site = "https://api.dollapayments.com/"
+    self.site = "https://api.khoyn.com/"
 
     def self._build_connection(rebuild = false)
       super.tap do |connection|

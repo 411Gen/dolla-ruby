@@ -1,6 +1,7 @@
 require "json_api_client"
 require "dolla/version"
 require "dolla/base"
+require "dolla/upload_base"
 require "dolla/merchant"
 require "dolla/user"
 require "dolla/staff_member"
@@ -22,6 +23,8 @@ require "dolla/permissions"
 require "dolla/supported_bots"
 require "dolla/app"
 require "dolla/app_install"
+require "dolla/product"
+require "dolla/image"
 require "dolla/errors/base_error"
 require "dolla/errors/authentication_error"
 
@@ -31,6 +34,10 @@ module Dolla
 
     def site=(value)
       Base.class_eval do 
+        self.site = value
+      end
+
+      UploadBase.class_eval do 
         self.site = value
       end
     end
