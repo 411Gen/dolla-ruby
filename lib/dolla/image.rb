@@ -3,10 +3,6 @@ require 'dolla/upload_base'
 module Dolla
   class Image < Dolla::UploadBase
 
-    belongs_to :product
-
-    # attr_accessor :file, :product_id, :alt, :variant_id
-
     def upload_attributes
       attributes.merge({file: file})
     end
