@@ -7,6 +7,7 @@ module Dolla
     custom_endpoint :merchants_series, on: :collection, request_method: :get
     custom_endpoint :customers_series, on: :collection, request_method: :get
     custom_endpoint :transactions_series, on: :collection, request_method: :get
+    custom_endpoint :completed_orders_series, on: :collection, request_method: :get
     custom_endpoint :payouts_series, on: :collection, request_method: :get
   end
 end

@@ -51,7 +51,7 @@ module Dolla
       end
 
       UploadBase.class_eval do 
-        self.site = value
+        self.site = value.gsub('api', 'uploads')
       end
     end
   end
