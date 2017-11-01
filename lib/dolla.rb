@@ -38,6 +38,7 @@ require "dolla/tax_category"
 require "dolla/accessory"
 require "dolla/up_sell"
 require "dolla/cross_sell"
+require "dolla/push_notification"
 require "dolla/errors/base_error"
 require "dolla/errors/authentication_error"
 
