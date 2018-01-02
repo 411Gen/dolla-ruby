@@ -5,5 +5,7 @@ module Dolla
 
     custom_endpoint :next, on: :member, request_method: :put
     custom_endpoint :complete, on: :member, request_method: :put
+    custom_endpoint :acknowledge, on: :member, request_method: :put
+    custom_endpoint :fulfill, on: :member, request_method: :put
   end
 end
