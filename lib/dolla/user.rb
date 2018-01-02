@@ -11,6 +11,10 @@ module Dolla
 
     custom_endpoint :unlock, on: :member, request_method: :put
 
+    class Order < Dolla::Base
+      belongs_to :user
+    end
+
     # has_many :cards
   end
 end
