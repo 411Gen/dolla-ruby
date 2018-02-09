@@ -11,6 +11,8 @@ module Dolla
     custom_endpoint :add_product, on: :member, request_method: :post
     custom_endpoint :remove_product, on: :member, request_method: :delete
     custom_endpoint :move_product, on: :member, request_method: :post
+    custom_endpoint :like, on: :member, request_method: :post
+    custom_endpoint :dislike, on: :member, request_method: :post
 
     class Product < Dolla::Base
 
