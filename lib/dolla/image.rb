@@ -3,6 +3,8 @@ require 'dolla/upload_base'
 module Dolla
   class Image < Dolla::UploadBase
 
+    custom_endpoint :all_angles, on: :collection, request_method: :get
+
     def upload_attributes
       attributes.merge({file: file})
     end
