@@ -10,7 +10,7 @@ module Dolla
         end
 
         def call(environment)
-          endpoint = { method: environment.method, path: environment.url.path.gsub(/(inv|txn)_.+/, ':id') }
+          endpoint = { method: environment.method, path: environment.url.path.gsub(/(inv|txn|user)_.+/, ':id') }
 
           if unauthenticated_endpoints.include?(endpoint) and !credentials_exist?(email, password, api_key, jwt)
             # unauthenticated requests are for resources that aren't separated by environment
@@ -72,6 +72,8 @@ module Dolla
         def unauthenticated_endpoints
           [
             {method: :post, path: '/users'},
+            {method: :post, path: '/users/:id/passwords'},
+            {method: :patch, path: '/users/:id/passwords'},
             {method: :get, path: '/invoices/:id'},
             {method: :post, path: '/transactions'},
             {method: :get, path: '/transactions/:id'},
