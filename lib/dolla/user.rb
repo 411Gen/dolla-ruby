@@ -22,5 +22,13 @@ module Dolla
     class Password < Dolla::Base
       belongs_to :user
     end
+
+    class PaymentSource < Dolla::Base
+      belongs_to :user
+
+      def self.table_name
+        "spaces/payment_sources"
+      end
+    end
   end
 end
