@@ -15,6 +15,10 @@ module Dolla
       belongs_to :user
     end
 
+    class SavedAddress < Dolla::Base
+      belongs_to :user
+    end
+
     class Confirmation < Dolla::Base
       belongs_to :user
     end
