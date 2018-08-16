@@ -6,5 +6,9 @@ module Dolla
     def self.table_name
       "spaces/payment_sources"
     end
+
+    def type
+      "payment_sources"
+    end
   end
 end
