@@ -7,7 +7,7 @@ module Dolla
       "spaces/payment_sources"
     end
 
-    def type
+    def self.type
       "payment_sources"
     end
   end
