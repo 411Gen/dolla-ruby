@@ -1,6 +1,7 @@
 require "dolla/json_api_client/middleware/authentication"
 require "dolla/json_api_client/middleware/dolla_environment"
 require "dolla/json_api_client/middleware/dolla_merchant_id"
+require "dolla/json_api_client/middleware/khoyn_reseller_id"
 require "dolla/json_api_client/parsers/custom_parser"
 
 module Dolla
@@ -15,6 +16,7 @@ module Dolla
         connection.use JsonApiClient::Middleware::Authentication, self
         connection.use JsonApiClient::Middleware::DollaEnvironment, self
         connection.use JsonApiClient::Middleware::DollaMerchantId, self
+        connection.use JsonApiClient::Middleware::KhoynResellerId, self
       end
     end
 

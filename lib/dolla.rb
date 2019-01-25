@@ -58,7 +58,7 @@ require "dolla/errors/authentication_error"
 
 module Dolla
   class << self
-    attr_accessor :api_key, :jwt, :environment, :email, :password, :merchant_id, :site
+    attr_accessor :api_key, :jwt, :environment, :email, :password, :merchant_id, :reseller_id, :site
 
     def site=(value)
       Base.class_eval do 
