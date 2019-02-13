@@ -8,5 +8,6 @@ module Dolla
     custom_endpoint :acknowledge, on: :member, request_method: :put
     custom_endpoint :ship, on: :member, request_method: :put
     custom_endpoint :receive, on: :member, request_method: :put
+    custom_endpoint :cancel, on: :member, request_method: :put
   end
 end
