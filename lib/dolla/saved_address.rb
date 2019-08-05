@@ -5,5 +5,6 @@ module Dolla
 
     custom_endpoint :make_default, on: :member, request_method: :put
     custom_endpoint :archive, on: :member, request_method: :put
+    custom_endpoint :unarchive, on: :member, request_method: :put
   end
 end
