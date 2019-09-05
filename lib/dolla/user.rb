@@ -11,6 +11,8 @@ module Dolla
 
     custom_endpoint :unlocks, on: :member, request_method: :put
 
+    custom_endpoint :invitations, on: :collection, request_method: :put
+
     class Order < Dolla::Base
       belongs_to :user
     end
