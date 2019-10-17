@@ -54,6 +54,7 @@ require "dolla/push_notification"
 require "dolla/recommendation"
 require "dolla/concept"
 require "dolla/saved_address"
+require "dolla/addon"
 require "dolla/errors/base_error"
 require "dolla/errors/authentication_error"
 
