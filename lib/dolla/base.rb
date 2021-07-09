@@ -20,11 +20,12 @@ module Dolla
       end
     end
 
-    # self.connection do |connection|
-    #   connection.use JsonApiClient::Middleware::Authentication, self
-    #   connection.use JsonApiClient::Middleware::DollaEnvironment, self
-    #   connection.use JsonApiClient::Middleware::DollaMerchantId, self
-    # end
+    self.connection do |connection|
+      connection.use Faraday::Response::Logger
+      # connection.use JsonApiClient::Middleware::Authentication, self
+      # connection.use JsonApiClient::Middleware::DollaEnvironment, self
+      # connection.use JsonApiClient::Middleware::DollaMerchantId, self
+    end
 
     def self.with_config(options = {})
       self.custom_config = options
